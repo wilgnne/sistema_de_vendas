@@ -119,7 +119,6 @@ public class FrmFuncionario extends javax.swing.JFrame {
         btnpesquisar = new javax.swing.JButton();
         btnnovo = new javax.swing.JButton();
         btnsalvar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -588,15 +587,6 @@ public class FrmFuncionario extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/editar.png"))); // NOI18N
-        jButton3.setText("Editar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/excluir.png"))); // NOI18N
         jButton4.setText("Excluir");
@@ -621,9 +611,7 @@ public class FrmFuncionario extends javax.swing.JFrame {
                         .addComponent(btnnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -637,9 +625,9 @@ public class FrmFuncionario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -745,33 +733,63 @@ public class FrmFuncionario extends javax.swing.JFrame {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // boto salvar
+         if(txtcodigo.getText().equals("")){
+             funcionario = new Funcionario();
 
-        funcionario = new Funcionario();
+            funcionario.setNome(txtnome.getText());
+            funcionario.setRg(txtrg.getText());
+            funcionario.setCpf(txtcpf.getText());
+            funcionario.setEmail(txtemail.getText());
 
-        funcionario.setNome(txtnome.getText());
-        funcionario.setRg(txtrg.getText());
-        funcionario.setCpf(txtcpf.getText());
-        funcionario.setEmail(txtemail.getText());
+            funcionario.setSenha(txtsenha.getText());
+            funcionario.setCargo(txtcargo.getText());
+            funcionario.setNivel_acesso(cbnivel.getSelectedItem().toString());
 
-        funcionario.setSenha(txtsenha.getText());
-        funcionario.setCargo(txtcargo.getText());
-        funcionario.setNivel_acesso(cbnivel.getSelectedItem().toString());
+            funcionario.setTelefone(txtfixo.getText());
+            funcionario.setCelular(txtcel.getText());
+            funcionario.setCep(txtcep.getText());
+            funcionario.setEndereco(txtend.getText());
+            funcionario.setNumero(Integer.parseInt(txtnumero.getText()));
+            funcionario.setComplemento(txtcomplemento.getText());
+            funcionario.setBairro(txtbairro.getText());
+            funcionario.setCidade(txtcidade.getText());
+            funcionario.setUf(cbuf.getSelectedItem().toString());
 
-        funcionario.setTelefone(txtfixo.getText());
-        funcionario.setCelular(txtcel.getText());
-        funcionario.setCep(txtcep.getText());
-        funcionario.setEndereco(txtend.getText());
-        funcionario.setNumero(Integer.parseInt(txtnumero.getText()));
-        funcionario.setComplemento(txtcomplemento.getText());
-        funcionario.setBairro(txtbairro.getText());
-        funcionario.setCidade(txtcidade.getText());
-        funcionario.setUf(cbuf.getSelectedItem().toString());
+            DaoFuncionario dao = new DaoFuncionario();
 
-        DaoFuncionario dao = new DaoFuncionario();
+            dao.cadastrarFuncionarios(funcionario);
 
-        dao.cadastrarFuncionarios(funcionario);
+            new Utilitarios().LimpaTela(painel_dados);
+         }else{
+             funcionario = new Funcionario();
 
-        new Utilitarios().LimpaTela(painel_dados);
+            funcionario.setNome(txtnome.getText());
+            funcionario.setRg(txtrg.getText());
+            funcionario.setCpf(txtcpf.getText());
+            funcionario.setEmail(txtemail.getText());
+
+            funcionario.setSenha(txtsenha.getText());
+            funcionario.setCargo(txtcargo.getText());
+            funcionario.setNivel_acesso(cbnivel.getSelectedItem().toString());
+
+            funcionario.setTelefone(txtfixo.getText());
+            funcionario.setCelular(txtcel.getText());
+            funcionario.setCep(txtcep.getText());
+            funcionario.setEndereco(txtend.getText());
+            funcionario.setNumero(Integer.parseInt(txtnumero.getText()));
+            funcionario.setComplemento(txtcomplemento.getText());
+            funcionario.setBairro(txtbairro.getText());
+            funcionario.setCidade(txtcidade.getText());
+            funcionario.setUf(cbuf.getSelectedItem().toString());
+
+            funcionario.setId(Integer.parseInt(txtcodigo.getText()));
+
+            DaoFuncionario dao = new DaoFuncionario();
+
+            dao.alterarFuncionario(funcionario);
+
+            new Utilitarios().LimpaTela(painel_dados);
+         }      
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -803,41 +821,6 @@ public class FrmFuncionario extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_tabelaFuncionariosMouseClicked
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // botao editar
-
-        funcionario = new Funcionario();
-
-        funcionario.setNome(txtnome.getText());
-        funcionario.setRg(txtrg.getText());
-        funcionario.setCpf(txtcpf.getText());
-        funcionario.setEmail(txtemail.getText());
-
-        funcionario.setSenha(txtsenha.getText());
-        funcionario.setCargo(txtcargo.getText());
-        funcionario.setNivel_acesso(cbnivel.getSelectedItem().toString());
-
-        funcionario.setTelefone(txtfixo.getText());
-        funcionario.setCelular(txtcel.getText());
-        funcionario.setCep(txtcep.getText());
-        funcionario.setEndereco(txtend.getText());
-        funcionario.setNumero(Integer.parseInt(txtnumero.getText()));
-        funcionario.setComplemento(txtcomplemento.getText());
-        funcionario.setBairro(txtbairro.getText());
-        funcionario.setCidade(txtcidade.getText());
-        funcionario.setUf(cbuf.getSelectedItem().toString());
-
-        funcionario.setId(Integer.parseInt(txtcodigo.getText()));
-
-        DaoFuncionario dao = new DaoFuncionario();
-
-        dao.alterarFuncionario(funcionario);
-
-        new Utilitarios().LimpaTela(painel_dados);
-
-
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // botao excluir
@@ -945,7 +928,6 @@ public class FrmFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton btnsalvar;
     private javax.swing.JComboBox<String> cbnivel;
     private javax.swing.JComboBox<String> cbuf;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
