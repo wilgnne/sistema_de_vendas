@@ -105,3 +105,6 @@ CREATE TABLE tb_itensvendas (
 /*****************/
 
 select * from tb_clientes where nome like 'a%';
+
+insert into tb_funcionarios (nome, rg, cpf, email, senha, cargo, nivel_acesso, telefone, celular, cep, endereco, numero, complemento, bairro, cidade, estado)
+values ("Eduardo", "1234567", "12345678900", "eduardo@gmail.com", "edu1234", "zelador", "administrador","99999999", "4499999999", "85830000", "Rua Rui Barbosa", 20, "perto de da solveteria lambida's", "centro", "Toledo", "PR");  
