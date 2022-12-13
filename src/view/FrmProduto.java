@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmProduto extends javax.swing.JFrame {
 
+    private Produto produto;
     //Metodo Listar na tabela
     public void listar() {
 
@@ -402,25 +403,25 @@ public class FrmProduto extends javax.swing.JFrame {
         // botao buscar cliente por nome     
 
         String nome = txtdescricao.getText();
-        Produto obj = new Produto();
+        produto = new Produto();
         DaoProduto dao = new DaoProduto();       
 
-        obj = dao.consultaPorNome(nome);
+        produto = dao.consultaPorNome(nome);
         
         cbfornecedor.removeAllItems();
 
-        if (obj.getDescricao() != null) {
+        if (produto.getDescricao() != null) {
 
             //Exibi os dados do obj nos campos de texto
-            txtcodigo.setText(String.valueOf(obj.getId()));
-            txtdescricao.setText(obj.getDescricao());
-            txtpreco.setText(String.valueOf(obj.getPreco()));
-            txtqtdestoque.setText(String.valueOf(obj.getQtd_estoque()));
+            txtcodigo.setText(String.valueOf(produto.getId()));
+            txtdescricao.setText(produto.getDescricao());
+            txtpreco.setText(String.valueOf(produto.getPreco()));
+            txtqtdestoque.setText(String.valueOf(produto.getQtd_estoque()));
          
             Fornecedor f = new Fornecedor();
             DaoFornecedor fdao = new DaoFornecedor();
 
-            f = fdao.consultaPorNome(obj.getFornecedor().getNome());
+            f = fdao.consultaPorNome(produto.getFornecedor().getNome());
 
             cbfornecedor.getModel().setSelectedItem(f);
             
@@ -460,18 +461,18 @@ public class FrmProduto extends javax.swing.JFrame {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // boto salvar
-        Produto obj = new Produto();
-        obj.setDescricao(txtdescricao.getText());
-        obj.setPreco(Double.parseDouble(txtpreco.getText()));
-        obj.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
+        produto = new Produto();
+        produto.setDescricao(txtdescricao.getText());
+        produto.setPreco(Double.parseDouble(txtpreco.getText()));
+        produto.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
 
         //Criar um objeto de Fornecedor
         Fornecedor f = new Fornecedor();
         f = (Fornecedor) cbfornecedor.getSelectedItem();
-        obj.setFornecedor(f);
+        produto.setFornecedor(f);
 
         DaoProduto dao = new DaoProduto();
-        dao.cadastrar(obj);
+        dao.cadastrar(produto);
 
         new Utilitarios().LimpaTela(painel_dados);
 
@@ -507,20 +508,20 @@ public class FrmProduto extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // botao editar
-        Produto obj = new Produto();
-        obj.setId(Integer.parseInt(txtcodigo.getText()));
-        obj.setDescricao(txtdescricao.getText());
-        obj.setPreco(Double.parseDouble(txtpreco.getText()));
-        obj.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
+        produto = new Produto();
+        produto.setId(Integer.parseInt(txtcodigo.getText()));
+        produto.setDescricao(txtdescricao.getText());
+        produto.setPreco(Double.parseDouble(txtpreco.getText()));
+        produto.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
 
         //Criar um objeto de Fornecedor
         Fornecedor f = new Fornecedor();
         f = (Fornecedor) cbfornecedor.getSelectedItem();
 
-        obj.setFornecedor(f);
+        produto.setFornecedor(f);
 
         DaoProduto dao = new DaoProduto();
-        dao.alterar(obj);
+        dao.alterar(produto);
 
         new Utilitarios().LimpaTela(painel_dados);
 
@@ -530,11 +531,11 @@ public class FrmProduto extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // botao excluir
 
-        Produto obj = new Produto();
-        obj.setId(Integer.parseInt(txtcodigo.getText()));
+        produto = new Produto();
+        produto.setId(Integer.parseInt(txtcodigo.getText()));
 
         DaoProduto dao = new DaoProduto();
-        dao.excluir(obj);
+        dao.excluir(produto);
 
         new Utilitarios().LimpaTela(painel_dados);
 
