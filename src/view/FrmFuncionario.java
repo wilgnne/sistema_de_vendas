@@ -768,10 +768,15 @@ public class FrmFuncionario extends javax.swing.JFrame {
 
         DaoFuncionario dao = new DaoFuncionario();
 
-        dao.cadastrarFuncionarios(obj);
+        String erro = obj.isValid();
+        if (erro != null) {
+            JOptionPane.showMessageDialog(null, erro);
+        } else {
 
-        new Utilitarios().LimpaTela(painel_dados);
+            dao.cadastrarFuncionarios(obj);
 
+            new Utilitarios().LimpaTela(painel_dados);
+        }
 
     }//GEN-LAST:event_btnsalvarActionPerformed
 
