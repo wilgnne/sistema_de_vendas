@@ -709,30 +709,6 @@ public class FrmCliente extends javax.swing.JFrame {
         cbuf.setSelectedItem(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 13).toString());
     }//GEN-LAST:event_tabelaClientesMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // botao editar
-        cliente = new Cliente();
-
-        cliente.setNome(txtnome.getText());
-        cliente.setRg(txtrg.getText());
-        cliente.setCpf(txtcpf.getText());
-        cliente.setEmail(txtemail.getText());
-        cliente.setTelefone(txtfixo.getText());
-        cliente.setCelular(txtcel.getText());
-        cliente.setCep(txtcep.getText());
-        cliente.setEndereco(txtend.getText());
-        cliente.setNumero(Integer.parseInt(txtnumero.getText()));
-        cliente.setComplemento(txtcomplemento.getText());
-        cliente.setBairro(txtbairro.getText());
-        cliente.setCidade(txtcidade.getText());
-        cliente.setUf(cbuf.getSelectedItem().toString());
-        cliente.setId(Integer.parseInt(txtcodigo.getText()));
-
-        DaoCliente dao = new DaoCliente();
-        dao.alterarCliente(cliente);
-        new Utilitarios().LimpaTela(painel_dados);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // botao excluir
         cliente = new Cliente();
