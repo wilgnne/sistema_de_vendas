@@ -26,6 +26,20 @@ public class Cliente {
     private String cidade;
     private String uf;   
     
+    public String isValid(){
+     if (nome.equals("") ) return "Insira um nome";
+     if (email.equals("") ) return "Insira um email";
+     if (email.contains("@") ) return "Insira um endereco de email valido";
+     if (cpf.equals("") ) return "Insira um cpf";
+     if (celular.equals("") ) return "Insira um numero de celular";
+     if (cep.equals("") ) return "Insira um numero de cep";
+     if (bairro.equals("") ) return "Insira o nome do bairro";
+     if (endereco.equals("") ) return "Insira o nome do logradouro";
+     if (numero == 0) return "Insira o numero do endereco";
+     return null;
+    }
+    
+    
     public int getId() {
         return id;
     }
