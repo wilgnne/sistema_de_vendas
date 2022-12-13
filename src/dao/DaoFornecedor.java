@@ -44,7 +44,7 @@ public class DaoFornecedor {
             stmt.setString(5, obj.getCelular());
             stmt.setString(6, obj.getCep());
             stmt.setString(7, obj.getEndereco());
-            stmt.setInt(8, obj.getNumero());
+            stmt.setString(8, obj.getNumero());
             stmt.setString(9, obj.getComplemento());
             stmt.setString(10, obj.getBairro());
             stmt.setString(11, obj.getCidade());
@@ -105,7 +105,7 @@ public class DaoFornecedor {
             stmt.setString(5, obj.getCelular());
             stmt.setString(6, obj.getCep());
             stmt.setString(7, obj.getEndereco());
-            stmt.setInt(8, obj.getNumero());
+            stmt.setString(8, obj.getNumero());
             stmt.setString(9, obj.getComplemento());
             stmt.setString(10, obj.getBairro());
             stmt.setString(11, obj.getCidade());
@@ -148,7 +148,7 @@ public class DaoFornecedor {
                 obj.setCelular(rs.getString("celular"));
                 obj.setCep(rs.getString("cep"));
                 obj.setEndereco(rs.getString("endereco"));
-                obj.setNumero(rs.getInt("numero"));
+                obj.setNumero(rs.getString("numero"));
                 obj.setComplemento(rs.getString("complemento"));
                 obj.setBairro(rs.getString("bairro"));
                 obj.setCidade(rs.getString("cidade"));
@@ -191,7 +191,7 @@ public class DaoFornecedor {
                 obj.setCelular(rs.getString("celular"));
                 obj.setCep(rs.getString("cep"));
                 obj.setEndereco(rs.getString("endereco"));
-                obj.setNumero(rs.getInt("numero"));
+                obj.setNumero(rs.getString("numero"));
                 obj.setComplemento(rs.getString("complemento"));
                 obj.setBairro(rs.getString("bairro"));
                 obj.setCidade(rs.getString("cidade"));
@@ -232,7 +232,7 @@ public class DaoFornecedor {
                 obj.setCelular(rs.getString("celular"));
                 obj.setCep(rs.getString("cep"));
                 obj.setEndereco(rs.getString("endereco"));
-                obj.setNumero(rs.getInt("numero"));
+                obj.setNumero(rs.getString("numero"));
                 obj.setComplemento(rs.getString("complemento"));
                 obj.setBairro(rs.getString("bairro"));
                 obj.setCidade(rs.getString("cidade"));

@@ -684,7 +684,7 @@ public class FrmCliente extends javax.swing.JFrame {
         obj.setCelular(txtcel.getText());
         obj.setCep(txtcep.getText());
         obj.setEndereco(txtend.getText());
-        obj.setNumero(Integer.parseInt(txtnumero.getText()));
+        obj.setNumero(txtnumero.getText());
         obj.setComplemento(txtcomplemento.getText());
         obj.setBairro(txtbairro.getText());
         obj.setCidade(txtcidade.getText());
@@ -739,7 +739,7 @@ public class FrmCliente extends javax.swing.JFrame {
         obj.setCelular(txtcel.getText());
         obj.setCep(txtcep.getText());
         obj.setEndereco(txtend.getText());
-        obj.setNumero(Integer.parseInt(txtnumero.getText()));
+        obj.setNumero(txtnumero.getText());
         obj.setComplemento(txtcomplemento.getText());
         obj.setBairro(txtbairro.getText());
         obj.setCidade(txtcidade.getText());
