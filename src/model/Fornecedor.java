@@ -12,7 +12,19 @@ package model;
 public class Fornecedor extends  Cliente {
     
     //atributos
-    private String cnpj;    
+    private String cnpj;
+
+    @Override
+    public String isValid() {
+        String clientPart = super.isValid();
+        if (clientPart != null) return clientPart;
+        
+        if (cnpj.equals("") ) return "Insira um cnpj";
+        
+        return null;
+    }
+    
+    
     
     //getters e setters
     public String getCnpj() {
