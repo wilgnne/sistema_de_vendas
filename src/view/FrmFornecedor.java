@@ -596,14 +596,14 @@ public class FrmFornecedor extends javax.swing.JFrame {
 
         //Programacao do keypress
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Cliente obj = new Cliente();
+            cliente = new Cliente();
             DaoCliente dao = new DaoCliente();
-            obj = dao.buscaCep(txtcep.getText());
+            cliente = dao.buscaCep(txtcep.getText());
 
-            txtend.setText(obj.getEndereco());
-            txtbairro.setText(obj.getBairro());
-            txtcidade.setText(obj.getCidade());
-            cbuf.setSelectedItem(obj.getUf());       
+            txtend.setText(cliente.getEndereco());
+            txtbairro.setText(cliente.getBairro());
+            txtcidade.setText(cliente.getCidade());
+            cbuf.setSelectedItem(cliente.getUf());       
 
         }
 
@@ -648,24 +648,24 @@ public class FrmFornecedor extends javax.swing.JFrame {
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // boto salvar
 
-        Fornecedor obj = new Fornecedor();
+        fornecedor = new Fornecedor();
 
-        obj.setNome(txtnome.getText());
-        obj.setCnpj(txtcnpj.getText());     
-        obj.setEmail(txtemail.getText());
-        obj.setTelefone(txtfixo.getText());
-        obj.setCelular(txtcel.getText());
-        obj.setCep(txtcep.getText());
-        obj.setEndereco(txtend.getText());
-        obj.setNumero(Integer.parseInt(txtnumero.getText()));
-        obj.setComplemento(txtcomplemento.getText());
-        obj.setBairro(txtbairro.getText());
-        obj.setCidade(txtcidade.getText());
-        obj.setUf(cbuf.getSelectedItem().toString());
+        fornecedor.setNome(txtnome.getText());
+        fornecedor.setCnpj(txtcnpj.getText());     
+        fornecedor.setEmail(txtemail.getText());
+        fornecedor.setTelefone(txtfixo.getText());
+        fornecedor.setCelular(txtcel.getText());
+        fornecedor.setCep(txtcep.getText());
+        fornecedor.setEndereco(txtend.getText());
+        fornecedor.setNumero(Integer.parseInt(txtnumero.getText()));
+        fornecedor.setComplemento(txtcomplemento.getText());
+        fornecedor.setBairro(txtbairro.getText());
+        fornecedor.setCidade(txtcidade.getText());
+        fornecedor.setUf(cbuf.getSelectedItem().toString());
 
         DaoFornecedor dao = new DaoFornecedor();
 
-        dao.cadastrarFornecedores(obj);
+        dao.cadastrarFornecedores(fornecedor);
         new Utilitarios().LimpaTela(painel_dados);
 
     }//GEN-LAST:event_btnsalvarActionPerformed
@@ -700,26 +700,26 @@ public class FrmFornecedor extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // botao editar
 
-        Fornecedor obj = new Fornecedor();
+        fornecedor = new Fornecedor();
 
-        obj.setNome(txtnome.getText());
-        obj.setCnpj(txtcnpj.getText());     
-        obj.setEmail(txtemail.getText());
-        obj.setTelefone(txtfixo.getText());
-        obj.setCelular(txtcel.getText());
-        obj.setCep(txtcep.getText());
-        obj.setEndereco(txtend.getText());
-        obj.setNumero(Integer.parseInt(txtnumero.getText()));
-        obj.setComplemento(txtcomplemento.getText());
-        obj.setBairro(txtbairro.getText());
-        obj.setCidade(txtcidade.getText());
-        obj.setUf(cbuf.getSelectedItem().toString());
+        fornecedor.setNome(txtnome.getText());
+        fornecedor.setCnpj(txtcnpj.getText());     
+        fornecedor.setEmail(txtemail.getText());
+        fornecedor.setTelefone(txtfixo.getText());
+        fornecedor.setCelular(txtcel.getText());
+        fornecedor.setCep(txtcep.getText());
+        fornecedor.setEndereco(txtend.getText());
+        fornecedor.setNumero(Integer.parseInt(txtnumero.getText()));
+        fornecedor.setComplemento(txtcomplemento.getText());
+        fornecedor.setBairro(txtbairro.getText());
+        fornecedor.setCidade(txtcidade.getText());
+        fornecedor.setUf(cbuf.getSelectedItem().toString());
 
-        obj.setId(Integer.parseInt(txtcodigo.getText()));
+        fornecedor.setId(Integer.parseInt(txtcodigo.getText()));
 
         DaoFornecedor dao = new DaoFornecedor();
 
-        dao.alterarFornecedor(obj);
+        dao.alterarFornecedor(fornecedor);
 
         new Utilitarios().LimpaTela(painel_dados);
 
@@ -729,13 +729,13 @@ public class FrmFornecedor extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // botao excluir
 
-        Fornecedor obj = new Fornecedor();
+        fornecedor = new Fornecedor();
 
-        obj.setId(Integer.parseInt(txtcodigo.getText()));
+        fornecedor.setId(Integer.parseInt(txtcodigo.getText()));
 
         DaoFornecedor dao = new DaoFornecedor();
 
-        dao.excluirFornecedor(obj);
+        dao.excluirFornecedor(fornecedor);
         new Utilitarios().LimpaTela(painel_dados);
 
     }//GEN-LAST:event_jButton4ActionPerformed
