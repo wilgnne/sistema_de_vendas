@@ -56,7 +56,7 @@ public class DaoCliente {
             stmt.setString(6, obj.getCelular());
             stmt.setString(7, obj.getCep());
             stmt.setString(8, obj.getEndereco());
-            stmt.setInt(9, obj.getNumero());
+            stmt.setString(9, obj.getNumero());
             stmt.setString(10, obj.getComplemento());
             stmt.setString(11, obj.getBairro());
             stmt.setString(12, obj.getCidade());
@@ -97,7 +97,7 @@ public class DaoCliente {
             stmt.setString(6, obj.getCelular());
             stmt.setString(7, obj.getCep());
             stmt.setString(8, obj.getEndereco());
-            stmt.setInt(9, obj.getNumero());
+            stmt.setString(9, obj.getNumero());
             stmt.setString(10, obj.getComplemento());
             stmt.setString(11, obj.getBairro());
             stmt.setString(12, obj.getCidade());
@@ -174,7 +174,7 @@ public class DaoCliente {
                 obj.setCelular(rs.getString("celular"));
                 obj.setCep(rs.getString("cep"));
                 obj.setEndereco(rs.getString("endereco"));
-                obj.setNumero(rs.getInt("numero"));
+                obj.setNumero(rs.getString("numero"));
                 obj.setComplemento(rs.getString("complemento"));
                 obj.setBairro(rs.getString("bairro"));
                 obj.setCidade(rs.getString("cidade"));
@@ -221,7 +221,7 @@ public class DaoCliente {
                 obj.setCelular(rs.getString("celular"));
                 obj.setCep(rs.getString("cep"));
                 obj.setEndereco(rs.getString("endereco"));
-                obj.setNumero(rs.getInt("numero"));
+                obj.setNumero(rs.getString("numero"));
                 obj.setComplemento(rs.getString("complemento"));
                 obj.setBairro(rs.getString("bairro"));
                 obj.setCidade(rs.getString("cidade"));
@@ -265,7 +265,7 @@ public class DaoCliente {
                 obj.setCelular(rs.getString("celular"));
                 obj.setCep(rs.getString("cep"));
                 obj.setEndereco(rs.getString("endereco"));
-                obj.setNumero(rs.getInt("numero"));
+                obj.setNumero(rs.getString("numero"));
                 obj.setComplemento(rs.getString("complemento"));
                 obj.setBairro(rs.getString("bairro"));
                 obj.setCidade(rs.getString("cidade"));
@@ -315,7 +315,7 @@ public class DaoCliente {
                 obj.setCelular(rs.getString("celular"));
                 obj.setCep(rs.getString("cep"));
                 obj.setEndereco(rs.getString("endereco"));
-                obj.setNumero(rs.getInt("numero"));
+                obj.setNumero(rs.getString("numero"));
                 obj.setComplemento(rs.getString("complemento"));
                 obj.setBairro(rs.getString("bairro"));
                 obj.setCidade(rs.getString("cidade"));
