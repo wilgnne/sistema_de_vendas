@@ -14,7 +14,7 @@ public class Cliente {
     private int id;
     private String nome;
     private String rg;
-    private String cpf;
+    private String cpf = "";
     private String email;
     private String telefone;
     private String celular;
@@ -29,13 +29,13 @@ public class Cliente {
     public String isValid(){
      if (nome.equals("") ) return "Insira um nome";
      if (email.equals("") ) return "Insira um email";
-     if (email.contains("@") ) return "Insira um endereco de email valido";
-     if (cpf.equals("") ) return "Insira um cpf";
-     if (celular.equals("") ) return "Insira um numero de celular";
-     if (cep.equals("") ) return "Insira um numero de cep";
+     if (!email.contains("@") ) return "Insira um endereco de email valido";
+     if (celular.equals("(  )      -     ") ) return "Insira um numero de celular";
+     if (cep.equals("     -   ") ) return "Insira um numero de cep";
      if (bairro.equals("") ) return "Insira o nome do bairro";
      if (endereco.equals("") ) return "Insira o nome do logradouro";
-     if (numero == 0) return "Insira o numero do endereco";
+     if (numero.equals ("")) return "Insira o numero do endereco";
+     if (cpf.equals("") ) return "Insira um cpf";
      return null;
     }
     
