@@ -9,23 +9,26 @@ package model;
  *
  * @author Tampelini
  */
-public class Fornecedor extends  Cliente {
-    
+public class Fornecedor extends Cliente {
+
     //atributos
     private String cnpj;
 
     @Override
     public String isValid() {
         String clientPart = super.isValid();
-        if (clientPart != null) return clientPart;
+        if (clientPart != null && !clientPart.equals("Insira um cpf")) {
+            return clientPart;
+        }
         
-        if (cnpj.equals("") ) return "Insira um cnpj";
-        
+
+        if (cnpj.equals("  .   .   /    -  ")) {
+            return "Insira um cnpj";
+        }
+
         return null;
     }
-    
-    
-    
+
     //getters e setters
     public String getCnpj() {
         return cnpj;
@@ -34,9 +37,9 @@ public class Fornecedor extends  Cliente {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-    
+
     @Override
-    public String toString(){
-        return this.getNome();        
+    public String toString() {
+        return this.getNome();
     }
 }
