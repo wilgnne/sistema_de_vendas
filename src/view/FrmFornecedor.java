@@ -22,6 +22,8 @@ import model.Utilitarios;
  */
 public class FrmFornecedor extends javax.swing.JFrame {
 
+    private Fornecedor fornecedor;
+    private Cliente cliente;
     //Metodo Listar na tabela
     public void listar() {
 
@@ -563,28 +565,27 @@ public class FrmFornecedor extends javax.swing.JFrame {
         // botao buscar cliente por nome     
 
         String nome = txtnome.getText();
-        Fornecedor obj = new Fornecedor();
+        fornecedor = new Fornecedor();
         DaoFornecedor dao = new DaoFornecedor();
 
-        obj = dao.consultaPorNome(nome);
+        fornecedor = dao.consultaPorNome(nome);
 
-        if (obj.getNome() != null) {
+        if (fornecedor.getNome() != null) {
 
             //Exibi os dados do obj nos campos de texto
-            txtcodigo.setText(String.valueOf(obj.getId()));
-            txtnome.setText(obj.getNome());
-            txtcnpj.setText(obj.getCnpj());
-        
-            txtemail.setText(obj.getEmail());
-            txtfixo.setText(obj.getTelefone());
-            txtcel.setText(obj.getCelular());
-            txtcep.setText(obj.getCep());
-            txtend.setText(obj.getEndereco());
-            txtnumero.setText(String.valueOf(obj.getNumero()));
-            txtcomplemento.setText(obj.getComplemento());
-            txtbairro.setText(obj.getBairro());
-            txtcidade.setText(obj.getCidade());
-            cbuf.setSelectedItem(obj.getUf());
+            txtcodigo.setText(String.valueOf(fornecedor.getId()));
+            txtnome.setText(fornecedor.getNome());
+            txtcnpj.setText(fornecedor.getCnpj());
+            txtemail.setText(fornecedor.getEmail());
+            txtfixo.setText(fornecedor.getTelefone());
+            txtcel.setText(fornecedor.getCelular());
+            txtcep.setText(fornecedor.getCep());
+            txtend.setText(fornecedor.getEndereco());
+            txtnumero.setText(String.valueOf(fornecedor.getNumero()));
+            txtcomplemento.setText(fornecedor.getComplemento());
+            txtbairro.setText(fornecedor.getBairro());
+            txtcidade.setText(fornecedor.getCidade());
+            cbuf.setSelectedItem(fornecedor.getUf());
         } else {
             JOptionPane.showMessageDialog(null, "Fornecedor não encontrado!");
         }
