@@ -94,7 +94,6 @@ public class FrmProduto extends javax.swing.JFrame {
         btnpesquisar = new javax.swing.JButton();
         btnnovo = new javax.swing.JButton();
         btnsalvar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -344,14 +343,6 @@ public class FrmProduto extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setText("Editar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Excluir");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -374,9 +365,7 @@ public class FrmProduto extends javax.swing.JFrame {
                 .addComponent(btnnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -389,9 +378,9 @@ public class FrmProduto extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -461,20 +450,41 @@ public class FrmProduto extends javax.swing.JFrame {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // boto salvar
-        produto = new Produto();
-        produto.setDescricao(txtdescricao.getText());
-        produto.setPreco(Double.parseDouble(txtpreco.getText()));
-        produto.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
+        
+        if(txtcodigo.getText().equals("")){
+            produto = new Produto();
+            produto.setDescricao(txtdescricao.getText());
+            produto.setPreco(Double.parseDouble(txtpreco.getText()));
+            produto.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
 
-        //Criar um objeto de Fornecedor
-        Fornecedor f = new Fornecedor();
-        f = (Fornecedor) cbfornecedor.getSelectedItem();
-        produto.setFornecedor(f);
+            //Criar um objeto de Fornecedor
+            Fornecedor f = new Fornecedor();
+            f = (Fornecedor) cbfornecedor.getSelectedItem();
+            produto.setFornecedor(f);
 
-        DaoProduto dao = new DaoProduto();
-        dao.cadastrar(produto);
+            DaoProduto dao = new DaoProduto();
+            dao.cadastrar(produto);
 
-        new Utilitarios().LimpaTela(painel_dados);
+            new Utilitarios().LimpaTela(painel_dados);
+        }else{
+            produto = new Produto();
+            produto.setId(Integer.parseInt(txtcodigo.getText()));
+            produto.setDescricao(txtdescricao.getText());
+            produto.setPreco(Double.parseDouble(txtpreco.getText()));
+            produto.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
+
+            //Criar um objeto de Fornecedor
+            Fornecedor f = new Fornecedor();
+            f = (Fornecedor) cbfornecedor.getSelectedItem();
+
+            produto.setFornecedor(f);
+
+            DaoProduto dao = new DaoProduto();
+            dao.alterar(produto);
+
+            new Utilitarios().LimpaTela(painel_dados);
+        }
+        
 
 
     }//GEN-LAST:event_btnsalvarActionPerformed
@@ -505,28 +515,6 @@ public class FrmProduto extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_tabelaProdutosMouseClicked
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // botao editar
-        produto = new Produto();
-        produto.setId(Integer.parseInt(txtcodigo.getText()));
-        produto.setDescricao(txtdescricao.getText());
-        produto.setPreco(Double.parseDouble(txtpreco.getText()));
-        produto.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
-
-        //Criar um objeto de Fornecedor
-        Fornecedor f = new Fornecedor();
-        f = (Fornecedor) cbfornecedor.getSelectedItem();
-
-        produto.setFornecedor(f);
-
-        DaoProduto dao = new DaoProduto();
-        dao.alterar(produto);
-
-        new Utilitarios().LimpaTela(painel_dados);
-
-
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // botao excluir
@@ -642,7 +630,6 @@ public class FrmProduto extends javax.swing.JFrame {
     private javax.swing.JButton btnpesquisar;
     private javax.swing.JButton btnsalvar;
     private javax.swing.JComboBox cbfornecedor;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
