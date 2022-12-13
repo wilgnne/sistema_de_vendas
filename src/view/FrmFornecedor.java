@@ -714,35 +714,6 @@ public class FrmFornecedor extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tabelaFornecedoresMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // botao editar
-
-        fornecedor = new Fornecedor();
-
-        fornecedor.setNome(txtnome.getText());
-        fornecedor.setCnpj(txtcnpj.getText());     
-        fornecedor.setEmail(txtemail.getText());
-        fornecedor.setTelefone(txtfixo.getText());
-        fornecedor.setCelular(txtcel.getText());
-        fornecedor.setCep(txtcep.getText());
-        fornecedor.setEndereco(txtend.getText());
-        fornecedor.setNumero(Integer.parseInt(txtnumero.getText()));
-        fornecedor.setComplemento(txtcomplemento.getText());
-        fornecedor.setBairro(txtbairro.getText());
-        fornecedor.setCidade(txtcidade.getText());
-        fornecedor.setUf(cbuf.getSelectedItem().toString());
-
-        fornecedor.setId(Integer.parseInt(txtcodigo.getText()));
-
-        DaoFornecedor dao = new DaoFornecedor();
-
-        dao.alterarFornecedor(fornecedor);
-
-        new Utilitarios().LimpaTela(painel_dados);
-
-
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // botao excluir
 
