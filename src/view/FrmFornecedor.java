@@ -638,6 +638,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // boto salvar
 
+        if(txtcodigo.getText().equals("")){
         fornecedor = new Fornecedor();
 
         fornecedor.setNome(txtnome.getText());
@@ -657,6 +658,32 @@ public class FrmFornecedor extends javax.swing.JFrame {
 
         dao.cadastrarFornecedores(fornecedor);
         new Utilitarios().LimpaTela(painel_dados);
+        }else{
+            fornecedor = new Fornecedor();
+
+            fornecedor.setNome(txtnome.getText());
+            fornecedor.setCnpj(txtcnpj.getText());     
+            fornecedor.setEmail(txtemail.getText());
+            fornecedor.setTelefone(txtfixo.getText());
+            fornecedor.setCelular(txtcel.getText());
+            fornecedor.setCep(txtcep.getText());
+            fornecedor.setEndereco(txtend.getText());
+            fornecedor.setNumero(Integer.parseInt(txtnumero.getText()));
+            fornecedor.setComplemento(txtcomplemento.getText());
+            fornecedor.setBairro(txtbairro.getText());
+            fornecedor.setCidade(txtcidade.getText());
+            fornecedor.setUf(cbuf.getSelectedItem().toString());
+
+            fornecedor.setId(Integer.parseInt(txtcodigo.getText()));
+
+            DaoFornecedor dao = new DaoFornecedor();
+
+            dao.alterarFornecedor(fornecedor);
+
+            new Utilitarios().LimpaTela(painel_dados);
+        }
+            
+        
 
     }//GEN-LAST:event_btnsalvarActionPerformed
 
