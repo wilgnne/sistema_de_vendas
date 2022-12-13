@@ -663,9 +663,14 @@ public class FrmFornecedor extends javax.swing.JFrame {
         obj.setUf(cbuf.getSelectedItem().toString());
 
         DaoFornecedor dao = new DaoFornecedor();
-
-        dao.cadastrarFornecedores(obj);
-        new Utilitarios().LimpaTela(painel_dados);
+        
+        String erro = obj.isValid();   
+        if (erro != null){
+            JOptionPane.showMessageDialog(null, erro);   
+        } else{
+            dao.cadastrarFornecedores(obj);
+            new Utilitarios().LimpaTela(painel_dados);
+        }
 
     }//GEN-LAST:event_btnsalvarActionPerformed
 
