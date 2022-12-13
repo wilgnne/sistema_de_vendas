@@ -107,7 +107,6 @@ public class FrmFornecedor extends javax.swing.JFrame {
         btnpesquisar = new javax.swing.JButton();
         btnnovo = new javax.swing.JButton();
         btnsalvar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
