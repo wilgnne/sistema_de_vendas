@@ -662,6 +662,8 @@ public class FrmCliente extends javax.swing.JFrame {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // boto salvar
+  
+        if(txtcodigo.getText().equals("")){
         cliente= new Cliente();
 
         cliente.setNome(txtnome.getText());
@@ -682,6 +684,30 @@ public class FrmCliente extends javax.swing.JFrame {
 
         dao.cadastrarCliente(cliente);
         new Utilitarios().LimpaTela(painel_dados);
+        }else{
+            cliente = new Cliente();
+
+            cliente.setNome(txtnome.getText());
+            cliente.setRg(txtrg.getText());
+            cliente.setCpf(txtcpf.getText());
+            cliente.setEmail(txtemail.getText());
+            cliente.setTelefone(txtfixo.getText());
+            cliente.setCelular(txtcel.getText());
+            cliente.setCep(txtcep.getText());
+            cliente.setEndereco(txtend.getText());
+            cliente.setNumero(Integer.parseInt(txtnumero.getText()));
+            cliente.setComplemento(txtcomplemento.getText());
+            cliente.setBairro(txtbairro.getText());
+            cliente.setCidade(txtcidade.getText());
+            cliente.setUf(cbuf.getSelectedItem().toString());
+            cliente.setId(Integer.parseInt(txtcodigo.getText()));
+
+            DaoCliente dao = new DaoCliente();
+            dao.alterarCliente(cliente);
+            new Utilitarios().LimpaTela(painel_dados);
+        }
+            
+        
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
