@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmVenda extends javax.swing.JFrame {
 
-    Cliente obj = new Cliente();
+    Cliente cliente = new Cliente();
     double total, preco,subtotal;
     int qtd;
     
@@ -460,11 +460,8 @@ public class FrmVenda extends javax.swing.JFrame {
 
     private void btnpagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagamentoActionPerformed
        //botao pagamento
-       FrmPagamento telap = new FrmPagamento();
+       FrmPagamento telap = new FrmPagamento(cliente, carrinho);
        telap.txttotal.setText(String.valueOf(total));
-       
-       telap.cliente = obj;
-       telap.carrinho = carrinho;
        
        telap.setVisible(true);
        this.dispose();
@@ -525,13 +522,11 @@ public class FrmVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void btnbuscaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaclienteActionPerformed
-
-        Cliente obj = new Cliente();
         DaoCliente dao = new DaoCliente();
 
-        obj = dao.buscaporcpf(txtcpf.getText());
+        cliente = dao.buscaporcpf(txtcpf.getText());
 
-        txtnome.setText(obj.getNome());
+        txtnome.setText(cliente.getNome());
     }//GEN-LAST:event_btnbuscaclienteActionPerformed
 
     private void txtbuscaprodutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscaprodutoActionPerformed
@@ -555,9 +550,9 @@ public class FrmVenda extends javax.swing.JFrame {
         
             DaoCliente dao = new DaoCliente();
 
-            obj = dao.buscaporcpf(txtcpf.getText());
+            cliente = dao.buscaporcpf(txtcpf.getText());
 
-            txtnome.setText(obj.getNome());
+            txtnome.setText(cliente.getNome());
 
         }
 
