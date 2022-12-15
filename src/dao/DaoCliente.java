@@ -354,13 +354,7 @@ public class DaoCliente {
             obj.setUf(webServiceCep.getUf());
             
             return obj;
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
-            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
-            return null;
         }
-
+        return null;
     }
-    
-   
 }

@@ -31,7 +31,9 @@ public class Cliente {
      if (email.equals("") ) return "Insira um email";
      if (!email.contains("@") ) return "Insira um endereco de email valido";
      if (celular.equals("(  )      -     ") ) return "Insira um numero de celular";
-     if (cep.equals("     -   ") ) return "Insira um numero de cep";
+     
+     WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+     if (!webServiceCep.wasSuccessful()) return "Insira um cep valido";
      if (bairro.equals("") ) return "Insira o nome do bairro";
      if (endereco.equals("") ) return "Insira o nome do logradouro";
      if (numero.equals ("")) return "Insira o numero do endereco";
