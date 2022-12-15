@@ -675,12 +675,12 @@ public class FrmCliente extends javax.swing.JFrame {
 
         DaoCliente dao = new DaoCliente();
         
-        String erro = obj.isValid();
+        String erro = cliente.isValid();
         if (erro != null) {
             JOptionPane.showMessageDialog(null, erro);
         } else {
 
-            dao.cadastrarCliente(obj);
+            dao.cadastrarCliente(cliente);
             new Utilitarios().LimpaTela(painel_dados);
         }
         }else{
