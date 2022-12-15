@@ -246,6 +246,11 @@ public class FrmCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtcep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtcep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtcepFocusLost(evt);
+            }
+        });
         txtcep.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtcepKeyPressed(evt);
@@ -662,7 +667,7 @@ public class FrmCliente extends javax.swing.JFrame {
         cliente.setCelular(txtcel.getText());
         cliente.setCep(txtcep.getText());
         cliente.setEndereco(txtend.getText());
-        cliente.setNumero(Integer.parseInt(txtnumero.getText()));
+        cliente.setNumero(txtnumero.getText());
         cliente.setComplemento(txtcomplemento.getText());
         cliente.setBairro(txtbairro.getText());
         cliente.setCidade(txtcidade.getText());
@@ -683,7 +688,7 @@ public class FrmCliente extends javax.swing.JFrame {
             cliente.setCelular(txtcel.getText());
             cliente.setCep(txtcep.getText());
             cliente.setEndereco(txtend.getText());
-            cliente.setNumero(Integer.parseInt(txtnumero.getText()));
+            cliente.setNumero(txtnumero.getText());
             cliente.setComplemento(txtcomplemento.getText());
             cliente.setBairro(txtbairro.getText());
             cliente.setCidade(txtcidade.getText());
@@ -767,6 +772,21 @@ public class FrmCliente extends javax.swing.JFrame {
     private void btnnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnovoActionPerformed
         new Utilitarios().LimpaTela(painel_dados);
     }//GEN-LAST:event_btnnovoActionPerformed
+
+    private void txtcepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtcepFocusLost
+
+            Cliente obj = new Cliente();
+            DaoCliente dao = new DaoCliente();
+            obj = dao.buscaCep(txtcep.getText());
+
+            if (obj != null) {
+                txtend.setText(obj.getEndereco());
+                txtbairro.setText(obj.getBairro());
+                txtcidade.setText(obj.getCidade());
+                cbuf.setSelectedItem(obj.getUf());
+            }
+        
+    }//GEN-LAST:event_txtcepFocusLost
 
     /**
      * @param args the command line arguments

@@ -749,7 +749,7 @@ public class FrmFuncionario extends javax.swing.JFrame {
             funcionario.setCelular(txtcel.getText());
             funcionario.setCep(txtcep.getText());
             funcionario.setEndereco(txtend.getText());
-            funcionario.setNumero(Integer.parseInt(txtnumero.getText()));
+            funcionario.setNumero(txtnumero.getText());
             funcionario.setComplemento(txtcomplemento.getText());
             funcionario.setBairro(txtbairro.getText());
             funcionario.setCidade(txtcidade.getText());
@@ -776,7 +776,7 @@ public class FrmFuncionario extends javax.swing.JFrame {
             funcionario.setCelular(txtcel.getText());
             funcionario.setCep(txtcep.getText());
             funcionario.setEndereco(txtend.getText());
-            funcionario.setNumero(Integer.parseInt(txtnumero.getText()));
+            funcionario.setNumero(txtnumero.getText());
             funcionario.setComplemento(txtcomplemento.getText());
             funcionario.setBairro(txtbairro.getText());
             funcionario.setCidade(txtcidade.getText());
@@ -789,7 +789,7 @@ public class FrmFuncionario extends javax.swing.JFrame {
             dao.alterarFuncionario(funcionario);
 
             new Utilitarios().LimpaTela(painel_dados);
-         }      
+         }
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated

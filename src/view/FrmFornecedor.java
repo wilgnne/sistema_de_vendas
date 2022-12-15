@@ -646,7 +646,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
         fornecedor.setCelular(txtcel.getText());
         fornecedor.setCep(txtcep.getText());
         fornecedor.setEndereco(txtend.getText());
-        fornecedor.setNumero(Integer.parseInt(txtnumero.getText()));
+        fornecedor.setNumero(txtnumero.getText());
         fornecedor.setComplemento(txtcomplemento.getText());
         fornecedor.setBairro(txtbairro.getText());
         fornecedor.setCidade(txtcidade.getText());
@@ -666,7 +666,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
             fornecedor.setCelular(txtcel.getText());
             fornecedor.setCep(txtcep.getText());
             fornecedor.setEndereco(txtend.getText());
-            fornecedor.setNumero(Integer.parseInt(txtnumero.getText()));
+            fornecedor.setNumero(txtnumero.getText());
             fornecedor.setComplemento(txtcomplemento.getText());
             fornecedor.setBairro(txtbairro.getText());
             fornecedor.setCidade(txtcidade.getText());

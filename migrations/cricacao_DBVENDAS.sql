@@ -18,7 +18,7 @@ CREATE TABLE tb_clientes (
   celular varchar(30),
   cep varchar(100),
   endereco varchar (255),
-  numero int,
+  numero varchar(6),
   complemento varchar (200),
   bairro varchar (100),
   cidade varchar (100),
@@ -36,7 +36,7 @@ CREATE TABLE tb_fornecedores (
   celular varchar(30),
   cep varchar(100),
   endereco varchar (255),
-  numero int,
+  numero varchar(6),
   complemento varchar (200),
   bairro varchar (100),
   cidade varchar (100),
@@ -58,7 +58,7 @@ CREATE TABLE tb_funcionarios (
   celular varchar(30),
   cep varchar(100),
   endereco varchar (255),
-  numero int,
+  numero varchar(6),
   complemento varchar (200),
   bairro varchar (100),
   cidade varchar (100),
@@ -105,3 +105,9 @@ CREATE TABLE tb_itensvendas (
 /*****************/
 
 select * from tb_clientes where nome like 'a%';
+
+insert into tb_funcionarios (nome, rg, cpf, email, senha, cargo, nivel_acesso, telefone, celular, cep, endereco, numero, complemento, bairro, cidade, estado)
+values ("Eduardo", "1234567", "12345678900", "eduardo@gmail.com", "edu1234", "zelador", "administrador","99999999", "4499999999", "85830000", "Rua Rui Barbosa", 20, "perto de da solveteria lambida's", "centro", "Toledo", "PR"); 
+
+insert into tb_funcionarios (nome, rg, cpf, email, senha, cargo, nivel_acesso, telefone, celular, cep, endereco, numero, complemento, bairro, cidade, estado)
+values ("padrao", "1234567", "12345678900", "admin@admin.com", "admin123", "zelador", "administrador","99999999", "4499999999", "85830000", "Rua Rui Barbosa", 20, "perto de da solveteria lambida's", "centro", "Toledo", "PR");  
