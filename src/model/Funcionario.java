@@ -16,6 +16,16 @@ public class Funcionario extends Cliente {
     private String cargo;
     private String nivel_acesso;
     
+    @Override
+    public String isValid() {
+        String clientPart = super.isValid();
+        if (clientPart != null) return clientPart;
+        
+        if (senha.length()<3 ) return "A senha precisa ter no minimo 3 caracteres";
+        
+        return null;
+    }
+    
     //Getters e Setters
     public String getSenha() {
         return senha;
