@@ -19,17 +19,16 @@ import model.Utilitarios;
  * @author Tampelini
  */
 public class FrmCliente extends javax.swing.JFrame {
-
+    private Cliente cliente;
+    
     //Metodo Listar na tabela
     public void listar() {
-
         DaoCliente dao = new DaoCliente();
         List<Cliente> lista = dao.listarClientes();
         DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
         dados.setNumRows(0);
 
         for (Cliente c : lista) {
-
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
@@ -47,13 +46,11 @@ public class FrmCliente extends javax.swing.JFrame {
                 c.getUf()
             });
         }
-
     }
 
     public FrmCliente() {
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
-
     }
 
     /**
@@ -106,7 +103,6 @@ public class FrmCliente extends javax.swing.JFrame {
         btnpesquisar = new javax.swing.JButton();
         btnnovo = new javax.swing.JButton();
         btnsalvar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -528,15 +524,6 @@ public class FrmCliente extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/editar.png"))); // NOI18N
-        jButton3.setText("Editar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/excluir.png"))); // NOI18N
         jButton4.setText("Excluir");
@@ -560,9 +547,7 @@ public class FrmCliente extends javax.swing.JFrame {
                 .addComponent(btnnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -575,9 +560,9 @@ public class FrmCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -591,52 +576,47 @@ public class FrmCliente extends javax.swing.JFrame {
 
     private void btnbuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaActionPerformed
         // botao buscar cliente por nome     
-
         String nome = txtnome.getText();
-        Cliente obj = new Cliente();
+        cliente = new Cliente();
         DaoCliente dao = new DaoCliente();
+        
+        cliente = dao.consultaPorNome(nome);
 
-        obj = dao.consultaPorNome(nome);
-
-        if (obj.getNome() != null) {
-
+        if (cliente.getNome() != null) {
             //Exibi os dados do obj nos campos de texto
-            txtcodigo.setText(String.valueOf(obj.getId()));
-            txtnome.setText(obj.getNome());
-            txtrg.setText(obj.getRg());
-            txtcpf.setText(obj.getCpf());
-            txtemail.setText(obj.getEmail());
-            txtfixo.setText(obj.getTelefone());
-            txtcel.setText(obj.getCelular());
-            txtcep.setText(obj.getCep());
-            txtend.setText(obj.getEndereco());
-            txtnumero.setText(String.valueOf(obj.getNumero()));
-            txtcomplemento.setText(obj.getComplemento());
-            txtbairro.setText(obj.getBairro());
-            txtcidade.setText(obj.getCidade());
-            cbuf.setSelectedItem(obj.getUf());
+            txtcodigo.setText(String.valueOf(cliente.getId()));
+            txtnome.setText(cliente.getNome());
+            txtrg.setText(cliente.getRg());
+            txtcpf.setText(cliente.getCpf());
+            txtemail.setText(cliente.getEmail());
+            txtfixo.setText(cliente.getTelefone());
+            txtcel.setText(cliente.getCelular());
+            txtcep.setText(cliente.getCep());
+            txtend.setText(cliente.getEndereco());
+            txtnumero.setText(String.valueOf(cliente.getNumero()));
+            txtcomplemento.setText(cliente.getComplemento());
+            txtbairro.setText(cliente.getBairro());
+            txtcidade.setText(cliente.getCidade());
+            cbuf.setSelectedItem(cliente.getUf());
         } else {
             JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
         }
-
     }//GEN-LAST:event_btnbuscaActionPerformed
 
     private void txtcepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcepKeyPressed
-
         //Programacao do keypress
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Cliente obj = new Cliente();
+            cliente = new Cliente();
             DaoCliente dao = new DaoCliente();
-            obj = dao.buscaCep(txtcep.getText());
+            cliente = dao.buscaCep(txtcep.getText());
 
-            if (obj != null) {
-                txtend.setText(obj.getEndereco());
-                txtbairro.setText(obj.getBairro());
-                txtcidade.setText(obj.getCidade());
-                cbuf.setSelectedItem(obj.getUf());
+            if (cliente != null) {
+                txtend.setText(cliente.getEndereco());
+                txtbairro.setText(cliente.getBairro());
+                txtcidade.setText(cliente.getCidade());
+                cbuf.setSelectedItem(cliente.getUf());
             }
         }
-
     }//GEN-LAST:event_txtcepKeyPressed
 
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
@@ -666,10 +646,7 @@ public class FrmCliente extends javax.swing.JFrame {
                 c.getCidade(),
                 c.getUf()
             });
-
         }
-
-
     }//GEN-LAST:event_btnpesquisarActionPerformed
 
     private void txtnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeActionPerformed
@@ -678,25 +655,26 @@ public class FrmCliente extends javax.swing.JFrame {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // boto salvar
+  
+        if(txtcodigo.getText().equals("")){
+        cliente= new Cliente();
 
-        Cliente obj = new Cliente();
-
-        obj.setNome(txtnome.getText());
-        obj.setRg(txtrg.getText());
-        obj.setCpf(txtcpf.getText());
-        obj.setEmail(txtemail.getText());
-        obj.setTelefone(txtfixo.getText());
-        obj.setCelular(txtcel.getText());
-        obj.setCep(txtcep.getText());
-        obj.setEndereco(txtend.getText());
-        obj.setNumero(txtnumero.getText());
-        obj.setComplemento(txtcomplemento.getText());
-        obj.setBairro(txtbairro.getText());
-        obj.setCidade(txtcidade.getText());
-        obj.setUf(cbuf.getSelectedItem().toString());
+        cliente.setNome(txtnome.getText());
+        cliente.setRg(txtrg.getText());
+        cliente.setCpf(txtcpf.getText());
+        cliente.setEmail(txtemail.getText());
+        cliente.setTelefone(txtfixo.getText());
+        cliente.setCelular(txtcel.getText());
+        cliente.setCep(txtcep.getText());
+        cliente.setEndereco(txtend.getText());
+        cliente.setNumero(txtnumero.getText());
+        cliente.setComplemento(txtcomplemento.getText());
+        cliente.setBairro(txtbairro.getText());
+        cliente.setCidade(txtcidade.getText());
+        cliente.setUf(cbuf.getSelectedItem().toString());
 
         DaoCliente dao = new DaoCliente();
-
+        
         String erro = obj.isValid();
         if (erro != null) {
             JOptionPane.showMessageDialog(null, erro);
@@ -705,13 +683,35 @@ public class FrmCliente extends javax.swing.JFrame {
             dao.cadastrarCliente(obj);
             new Utilitarios().LimpaTela(painel_dados);
         }
+        }else{
+            cliente = new Cliente();
 
+            cliente.setNome(txtnome.getText());
+            cliente.setRg(txtrg.getText());
+            cliente.setCpf(txtcpf.getText());
+            cliente.setEmail(txtemail.getText());
+            cliente.setTelefone(txtfixo.getText());
+            cliente.setCelular(txtcel.getText());
+            cliente.setCep(txtcep.getText());
+            cliente.setEndereco(txtend.getText());
+            cliente.setNumero(txtnumero.getText());
+            cliente.setComplemento(txtcomplemento.getText());
+            cliente.setBairro(txtbairro.getText());
+            cliente.setCidade(txtcidade.getText());
+            cliente.setUf(cbuf.getSelectedItem().toString());
+            cliente.setId(Integer.parseInt(txtcodigo.getText()));
+
+            DaoCliente dao = new DaoCliente();
+            dao.alterarCliente(cliente);
+            new Utilitarios().LimpaTela(painel_dados);
+        }
+            
+        
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // Carrega a lista
         listar();
-
     }//GEN-LAST:event_formWindowActivated
 
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
@@ -732,52 +732,18 @@ public class FrmCliente extends javax.swing.JFrame {
         txtbairro.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 11).toString());
         txtcidade.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 12).toString());
         cbuf.setSelectedItem(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 13).toString());
-
-
     }//GEN-LAST:event_tabelaClientesMouseClicked
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // botao editar
-
-        Cliente obj = new Cliente();
-
-        obj.setNome(txtnome.getText());
-        obj.setRg(txtrg.getText());
-        obj.setCpf(txtcpf.getText());
-        obj.setEmail(txtemail.getText());
-        obj.setTelefone(txtfixo.getText());
-        obj.setCelular(txtcel.getText());
-        obj.setCep(txtcep.getText());
-        obj.setEndereco(txtend.getText());
-        obj.setNumero(txtnumero.getText());
-        obj.setComplemento(txtcomplemento.getText());
-        obj.setBairro(txtbairro.getText());
-        obj.setCidade(txtcidade.getText());
-        obj.setUf(cbuf.getSelectedItem().toString());
-
-        obj.setId(Integer.parseInt(txtcodigo.getText()));
-
-        DaoCliente dao = new DaoCliente();
-
-        dao.alterarCliente(obj);
-
-        new Utilitarios().LimpaTela(painel_dados);
-
-
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // botao excluir
+        cliente = new Cliente();
 
-        Cliente obj = new Cliente();
-
-        obj.setId(Integer.parseInt(txtcodigo.getText()));
+        cliente.setId(Integer.parseInt(txtcodigo.getText()));
 
         DaoCliente dao = new DaoCliente();
 
-        dao.excluirCliente(obj);
+        dao.excluirCliente(cliente);
         new Utilitarios().LimpaTela(painel_dados);
-
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void txtpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaKeyPressed
@@ -806,13 +772,11 @@ public class FrmCliente extends javax.swing.JFrame {
                 c.getCidade(),
                 c.getUf()
             });
-
         }
     }//GEN-LAST:event_txtpesquisaKeyPressed
 
     private void btnnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnovoActionPerformed
         new Utilitarios().LimpaTela(painel_dados);
-
     }//GEN-LAST:event_btnnovoActionPerformed
 
     private void txtcepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtcepFocusLost
@@ -859,7 +823,6 @@ public class FrmCliente extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -876,7 +839,6 @@ public class FrmCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnpesquisar;
     private javax.swing.JButton btnsalvar;
     private javax.swing.JComboBox<String> cbuf;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
