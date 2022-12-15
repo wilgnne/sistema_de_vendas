@@ -22,6 +22,8 @@ import model.Utilitarios;
  */
 public class FrmFornecedor extends javax.swing.JFrame {
 
+    private Fornecedor fornecedor;
+    private Cliente cliente;
     //Metodo Listar na tabela
     public void listar() {
 
@@ -105,7 +107,6 @@ public class FrmFornecedor extends javax.swing.JFrame {
         btnpesquisar = new javax.swing.JButton();
         btnnovo = new javax.swing.JButton();
         btnsalvar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -498,15 +499,6 @@ public class FrmFornecedor extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/editar.png"))); // NOI18N
-        jButton3.setText("Editar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/excluir.png"))); // NOI18N
         jButton4.setText("Excluir");
@@ -530,9 +522,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
                 .addComponent(btnnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -545,9 +535,9 @@ public class FrmFornecedor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -563,28 +553,27 @@ public class FrmFornecedor extends javax.swing.JFrame {
         // botao buscar cliente por nome     
 
         String nome = txtnome.getText();
-        Fornecedor obj = new Fornecedor();
+        fornecedor = new Fornecedor();
         DaoFornecedor dao = new DaoFornecedor();
 
-        obj = dao.consultaPorNome(nome);
+        fornecedor = dao.consultaPorNome(nome);
 
-        if (obj.getNome() != null) {
+        if (fornecedor.getNome() != null) {
 
             //Exibi os dados do obj nos campos de texto
-            txtcodigo.setText(String.valueOf(obj.getId()));
-            txtnome.setText(obj.getNome());
-            txtcnpj.setText(obj.getCnpj());
-        
-            txtemail.setText(obj.getEmail());
-            txtfixo.setText(obj.getTelefone());
-            txtcel.setText(obj.getCelular());
-            txtcep.setText(obj.getCep());
-            txtend.setText(obj.getEndereco());
-            txtnumero.setText(String.valueOf(obj.getNumero()));
-            txtcomplemento.setText(obj.getComplemento());
-            txtbairro.setText(obj.getBairro());
-            txtcidade.setText(obj.getCidade());
-            cbuf.setSelectedItem(obj.getUf());
+            txtcodigo.setText(String.valueOf(fornecedor.getId()));
+            txtnome.setText(fornecedor.getNome());
+            txtcnpj.setText(fornecedor.getCnpj());
+            txtemail.setText(fornecedor.getEmail());
+            txtfixo.setText(fornecedor.getTelefone());
+            txtcel.setText(fornecedor.getCelular());
+            txtcep.setText(fornecedor.getCep());
+            txtend.setText(fornecedor.getEndereco());
+            txtnumero.setText(String.valueOf(fornecedor.getNumero()));
+            txtcomplemento.setText(fornecedor.getComplemento());
+            txtbairro.setText(fornecedor.getBairro());
+            txtcidade.setText(fornecedor.getCidade());
+            cbuf.setSelectedItem(fornecedor.getUf());
         } else {
             JOptionPane.showMessageDialog(null, "Fornecedor não encontrado!");
         }
@@ -595,14 +584,14 @@ public class FrmFornecedor extends javax.swing.JFrame {
 
         //Programacao do keypress
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Cliente obj = new Cliente();
+            cliente = new Cliente();
             DaoCliente dao = new DaoCliente();
-            obj = dao.buscaCep(txtcep.getText());
+            cliente = dao.buscaCep(txtcep.getText());
 
-            txtend.setText(obj.getEndereco());
-            txtbairro.setText(obj.getBairro());
-            txtcidade.setText(obj.getCidade());
-            cbuf.setSelectedItem(obj.getUf());       
+            txtend.setText(cliente.getEndereco());
+            txtbairro.setText(cliente.getBairro());
+            txtcidade.setText(cliente.getCidade());
+            cbuf.setSelectedItem(cliente.getUf());       
 
         }
 
@@ -647,25 +636,52 @@ public class FrmFornecedor extends javax.swing.JFrame {
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // boto salvar
 
-        Fornecedor obj = new Fornecedor();
+        if(txtcodigo.getText().equals("")){
+        fornecedor = new Fornecedor();
 
-        obj.setNome(txtnome.getText());
-        obj.setCnpj(txtcnpj.getText());     
-        obj.setEmail(txtemail.getText());
-        obj.setTelefone(txtfixo.getText());
-        obj.setCelular(txtcel.getText());
-        obj.setCep(txtcep.getText());
-        obj.setEndereco(txtend.getText());
-        obj.setNumero(txtnumero.getText());
-        obj.setComplemento(txtcomplemento.getText());
-        obj.setBairro(txtbairro.getText());
-        obj.setCidade(txtcidade.getText());
-        obj.setUf(cbuf.getSelectedItem().toString());
+        fornecedor.setNome(txtnome.getText());
+        fornecedor.setCnpj(txtcnpj.getText());     
+        fornecedor.setEmail(txtemail.getText());
+        fornecedor.setTelefone(txtfixo.getText());
+        fornecedor.setCelular(txtcel.getText());
+        fornecedor.setCep(txtcep.getText());
+        fornecedor.setEndereco(txtend.getText());
+        fornecedor.setNumero(txtnumero.getText());
+        fornecedor.setComplemento(txtcomplemento.getText());
+        fornecedor.setBairro(txtbairro.getText());
+        fornecedor.setCidade(txtcidade.getText());
+        fornecedor.setUf(cbuf.getSelectedItem().toString());
 
         DaoFornecedor dao = new DaoFornecedor();
 
-        dao.cadastrarFornecedores(obj);
+        dao.cadastrarFornecedores(fornecedor);
         new Utilitarios().LimpaTela(painel_dados);
+        }else{
+            fornecedor = new Fornecedor();
+
+            fornecedor.setNome(txtnome.getText());
+            fornecedor.setCnpj(txtcnpj.getText());     
+            fornecedor.setEmail(txtemail.getText());
+            fornecedor.setTelefone(txtfixo.getText());
+            fornecedor.setCelular(txtcel.getText());
+            fornecedor.setCep(txtcep.getText());
+            fornecedor.setEndereco(txtend.getText());
+            fornecedor.setNumero(txtnumero.getText());
+            fornecedor.setComplemento(txtcomplemento.getText());
+            fornecedor.setBairro(txtbairro.getText());
+            fornecedor.setCidade(txtcidade.getText());
+            fornecedor.setUf(cbuf.getSelectedItem().toString());
+
+            fornecedor.setId(Integer.parseInt(txtcodigo.getText()));
+
+            DaoFornecedor dao = new DaoFornecedor();
+
+            dao.alterarFornecedor(fornecedor);
+
+            new Utilitarios().LimpaTela(painel_dados);
+        }
+            
+        
 
     }//GEN-LAST:event_btnsalvarActionPerformed
 
@@ -696,45 +712,16 @@ public class FrmFornecedor extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tabelaFornecedoresMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // botao editar
-
-        Fornecedor obj = new Fornecedor();
-
-        obj.setNome(txtnome.getText());
-        obj.setCnpj(txtcnpj.getText());     
-        obj.setEmail(txtemail.getText());
-        obj.setTelefone(txtfixo.getText());
-        obj.setCelular(txtcel.getText());
-        obj.setCep(txtcep.getText());
-        obj.setEndereco(txtend.getText());
-        obj.setNumero(txtnumero.getText());
-        obj.setComplemento(txtcomplemento.getText());
-        obj.setBairro(txtbairro.getText());
-        obj.setCidade(txtcidade.getText());
-        obj.setUf(cbuf.getSelectedItem().toString());
-
-        obj.setId(Integer.parseInt(txtcodigo.getText()));
-
-        DaoFornecedor dao = new DaoFornecedor();
-
-        dao.alterarFornecedor(obj);
-
-        new Utilitarios().LimpaTela(painel_dados);
-
-
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // botao excluir
 
-        Fornecedor obj = new Fornecedor();
+        fornecedor = new Fornecedor();
 
-        obj.setId(Integer.parseInt(txtcodigo.getText()));
+        fornecedor.setId(Integer.parseInt(txtcodigo.getText()));
 
         DaoFornecedor dao = new DaoFornecedor();
 
-        dao.excluirFornecedor(obj);
+        dao.excluirFornecedor(fornecedor);
         new Utilitarios().LimpaTela(painel_dados);
 
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -817,7 +804,6 @@ public class FrmFornecedor extends javax.swing.JFrame {
     private javax.swing.JButton btnpesquisar;
     private javax.swing.JButton btnsalvar;
     private javax.swing.JComboBox<String> cbuf;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
