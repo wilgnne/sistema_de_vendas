@@ -654,8 +654,13 @@ public class FrmFornecedor extends javax.swing.JFrame {
 
         DaoFornecedor dao = new DaoFornecedor();
 
-        dao.cadastrarFornecedores(fornecedor);
-        new Utilitarios().LimpaTela(painel_dados);
+        String erro = obj.isValid();   
+        if (erro != null){
+            JOptionPane.showMessageDialog(null, erro);   
+        } else{
+            dao.cadastrarFornecedores(obj);
+            new Utilitarios().LimpaTela(painel_dados);
+        }
         }else{
             fornecedor = new Fornecedor();
 
@@ -680,9 +685,6 @@ public class FrmFornecedor extends javax.swing.JFrame {
 
             new Utilitarios().LimpaTela(painel_dados);
         }
-            
-        
-
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated

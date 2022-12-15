@@ -759,7 +759,15 @@ public class FrmFuncionario extends javax.swing.JFrame {
 
             dao.cadastrarFuncionarios(funcionario);
 
+        String erro = obj.isValid();
+        if (erro != null) {
+            JOptionPane.showMessageDialog(null, erro);
+        } else {
+
+            dao.cadastrarFuncionarios(obj);
+
             new Utilitarios().LimpaTela(painel_dados);
+        }
          }else{
              funcionario = new Funcionario();
 

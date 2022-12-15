@@ -27,7 +27,7 @@ public class FrmCliente extends javax.swing.JFrame {
         List<Cliente> lista = dao.listarClientes();
         DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
         dados.setNumRows(0);
-        
+
         for (Cliente c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
@@ -674,9 +674,15 @@ public class FrmCliente extends javax.swing.JFrame {
         cliente.setUf(cbuf.getSelectedItem().toString());
 
         DaoCliente dao = new DaoCliente();
+        
+        String erro = obj.isValid();
+        if (erro != null) {
+            JOptionPane.showMessageDialog(null, erro);
+        } else {
 
-        dao.cadastrarCliente(cliente);
-        new Utilitarios().LimpaTela(painel_dados);
+            dao.cadastrarCliente(obj);
+            new Utilitarios().LimpaTela(painel_dados);
+        }
         }else{
             cliente = new Cliente();
 
@@ -775,17 +781,17 @@ public class FrmCliente extends javax.swing.JFrame {
 
     private void txtcepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtcepFocusLost
 
-            Cliente obj = new Cliente();
-            DaoCliente dao = new DaoCliente();
-            obj = dao.buscaCep(txtcep.getText());
+        Cliente obj = new Cliente();
+        DaoCliente dao = new DaoCliente();
+        obj = dao.buscaCep(txtcep.getText());
 
-            if (obj != null) {
-                txtend.setText(obj.getEndereco());
-                txtbairro.setText(obj.getBairro());
-                txtcidade.setText(obj.getCidade());
-                cbuf.setSelectedItem(obj.getUf());
-            }
-        
+        if (obj != null) {
+            txtend.setText(obj.getEndereco());
+            txtbairro.setText(obj.getBairro());
+            txtcidade.setText(obj.getCidade());
+            cbuf.setSelectedItem(obj.getUf());
+        }
+
     }//GEN-LAST:event_txtcepFocusLost
 
     /**
