@@ -654,11 +654,11 @@ public class FrmFornecedor extends javax.swing.JFrame {
 
         DaoFornecedor dao = new DaoFornecedor();
 
-        String erro = obj.isValid();   
+        String erro = fornecedor.isValid();   
         if (erro != null){
             JOptionPane.showMessageDialog(null, erro);   
         } else{
-            dao.cadastrarFornecedores(obj);
+            dao.cadastrarFornecedores(fornecedor);
             new Utilitarios().LimpaTela(painel_dados);
         }
         }else{

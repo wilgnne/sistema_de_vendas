@@ -246,14 +246,9 @@ public class FrmCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtcep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtcep.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtcepFocusLost(evt);
-            }
-        });
         txtcep.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtcepKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtcepKeyReleased(evt);
             }
         });
 
@@ -603,22 +598,6 @@ public class FrmCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnbuscaActionPerformed
 
-    private void txtcepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcepKeyPressed
-        //Programacao do keypress
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            cliente = new Cliente();
-            DaoCliente dao = new DaoCliente();
-            cliente = dao.buscaCep(txtcep.getText());
-
-            if (cliente != null) {
-                txtend.setText(cliente.getEndereco());
-                txtbairro.setText(cliente.getBairro());
-                txtcidade.setText(cliente.getCidade());
-                cbuf.setSelectedItem(cliente.getUf());
-            }
-        }
-    }//GEN-LAST:event_txtcepKeyPressed
-
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
         // Botao pesquisar
         String nome = "%" + txtpesquisa.getText() + "%";
@@ -675,12 +654,12 @@ public class FrmCliente extends javax.swing.JFrame {
 
         DaoCliente dao = new DaoCliente();
         
-        String erro = obj.isValid();
+        String erro = cliente.isValid();
         if (erro != null) {
             JOptionPane.showMessageDialog(null, erro);
         } else {
 
-            dao.cadastrarCliente(obj);
+            dao.cadastrarCliente(cliente);
             new Utilitarios().LimpaTela(painel_dados);
         }
         }else{
@@ -779,11 +758,9 @@ public class FrmCliente extends javax.swing.JFrame {
         new Utilitarios().LimpaTela(painel_dados);
     }//GEN-LAST:event_btnnovoActionPerformed
 
-    private void txtcepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtcepFocusLost
-
-        Cliente obj = new Cliente();
+    private void txtcepKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcepKeyReleased
         DaoCliente dao = new DaoCliente();
-        obj = dao.buscaCep(txtcep.getText());
+        Cliente obj = dao.buscaCep(txtcep.getText());
 
         if (obj != null) {
             txtend.setText(obj.getEndereco());
@@ -791,8 +768,7 @@ public class FrmCliente extends javax.swing.JFrame {
             txtcidade.setText(obj.getCidade());
             cbuf.setSelectedItem(obj.getUf());
         }
-
-    }//GEN-LAST:event_txtcepFocusLost
+    }//GEN-LAST:event_txtcepKeyReleased
 
     /**
      * @param args the command line arguments
