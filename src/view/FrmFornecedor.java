@@ -35,7 +35,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
         for (Fornecedor c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
-                c.getNome(),           
+                c.getNome(),
                 c.getCnpj(),
                 c.getEmail(),
                 c.getTelefone(),
@@ -591,7 +591,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
             txtend.setText(cliente.getEndereco());
             txtbairro.setText(cliente.getBairro());
             txtcidade.setText(cliente.getCidade());
-            cbuf.setSelectedItem(cliente.getUf());       
+            cbuf.setSelectedItem(cliente.getUf());
 
         }
 
@@ -599,7 +599,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
 
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
         // Botao pesquisar
-         String nome = "%" + txtpesquisa.getText() + "%";
+        String nome = "%" + txtpesquisa.getText() + "%";
 
         DaoFornecedor dao = new DaoFornecedor();
         List<Fornecedor> lista = dao.listarFornecedoresPorNome(nome);
@@ -610,7 +610,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
         for (Fornecedor c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
-                c.getNome(),           
+                c.getNome(),
                 c.getCnpj(),
                 c.getEmail(),
                 c.getTelefone(),
@@ -636,36 +636,36 @@ public class FrmFornecedor extends javax.swing.JFrame {
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // boto salvar
 
-        if(txtcodigo.getText().equals("")){
-        fornecedor = new Fornecedor();
-
-        fornecedor.setNome(txtnome.getText());
-        fornecedor.setCnpj(txtcnpj.getText());     
-        fornecedor.setEmail(txtemail.getText());
-        fornecedor.setTelefone(txtfixo.getText());
-        fornecedor.setCelular(txtcel.getText());
-        fornecedor.setCep(txtcep.getText());
-        fornecedor.setEndereco(txtend.getText());
-        fornecedor.setNumero(txtnumero.getText());
-        fornecedor.setComplemento(txtcomplemento.getText());
-        fornecedor.setBairro(txtbairro.getText());
-        fornecedor.setCidade(txtcidade.getText());
-        fornecedor.setUf(cbuf.getSelectedItem().toString());
-
-        DaoFornecedor dao = new DaoFornecedor();
-
-        String erro = fornecedor.isValid();   
-        if (erro != null){
-            JOptionPane.showMessageDialog(null, erro);   
-        } else{
-            dao.cadastrarFornecedores(fornecedor);
-            new Utilitarios().LimpaTela(painel_dados);
-        }
-        }else{
+        if (txtcodigo.getText().equals("")) {
             fornecedor = new Fornecedor();
 
             fornecedor.setNome(txtnome.getText());
-            fornecedor.setCnpj(txtcnpj.getText());     
+            fornecedor.setCnpj(txtcnpj.getText());
+            fornecedor.setEmail(txtemail.getText());
+            fornecedor.setTelefone(txtfixo.getText());
+            fornecedor.setCelular(txtcel.getText());
+            fornecedor.setCep(txtcep.getText());
+            fornecedor.setEndereco(txtend.getText());
+            fornecedor.setNumero(txtnumero.getText());
+            fornecedor.setComplemento(txtcomplemento.getText());
+            fornecedor.setBairro(txtbairro.getText());
+            fornecedor.setCidade(txtcidade.getText());
+            fornecedor.setUf(cbuf.getSelectedItem().toString());
+
+            DaoFornecedor dao = new DaoFornecedor();
+
+            String erro = fornecedor.isValid();
+            if (erro != null) {
+                JOptionPane.showMessageDialog(null, erro);
+            } else {
+                dao.cadastrarFornecedores(fornecedor);
+                new Utilitarios().LimpaTela(painel_dados);
+            }
+        } else {
+            fornecedor = new Fornecedor();
+
+            fornecedor.setNome(txtnome.getText());
+            fornecedor.setCnpj(txtcnpj.getText());
             fornecedor.setEmail(txtemail.getText());
             fornecedor.setTelefone(txtfixo.getText());
             fornecedor.setCelular(txtcel.getText());
@@ -699,7 +699,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
 
         txtcodigo.setText(tabelaFornecedores.getValueAt(tabelaFornecedores.getSelectedRow(), 0).toString());
         txtnome.setText(tabelaFornecedores.getValueAt(tabelaFornecedores.getSelectedRow(), 1).toString());
-        txtcnpj.setText(tabelaFornecedores.getValueAt(tabelaFornecedores.getSelectedRow(), 2).toString());      
+        txtcnpj.setText(tabelaFornecedores.getValueAt(tabelaFornecedores.getSelectedRow(), 2).toString());
         txtemail.setText(tabelaFornecedores.getValueAt(tabelaFornecedores.getSelectedRow(), 3).toString());
         txtfixo.setText(tabelaFornecedores.getValueAt(tabelaFornecedores.getSelectedRow(), 4).toString());
         txtcel.setText(tabelaFornecedores.getValueAt(tabelaFornecedores.getSelectedRow(), 5).toString());
@@ -740,7 +740,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
         for (Fornecedor c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
-                c.getNome(),           
+                c.getNome(),
                 c.getCnpj(),
                 c.getEmail(),
                 c.getTelefone(),
