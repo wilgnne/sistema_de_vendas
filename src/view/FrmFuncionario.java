@@ -678,7 +678,7 @@ public class FrmFuncionario extends javax.swing.JFrame {
 
         //Programacao do keypress
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            cliente= new Cliente();
+            cliente = new Cliente();
             DaoCliente dao = new DaoCliente();
             cliente = dao.buscaCep(txtcep.getText());
 
@@ -733,8 +733,8 @@ public class FrmFuncionario extends javax.swing.JFrame {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // boto salvar
-         if(txtcodigo.getText().equals("")){
-             funcionario = new Funcionario();
+        if (txtcodigo.getText().equals("")) {
+            funcionario = new Funcionario();
 
             funcionario.setNome(txtnome.getText());
             funcionario.setRg(txtrg.getText());
@@ -757,19 +757,17 @@ public class FrmFuncionario extends javax.swing.JFrame {
 
             DaoFuncionario dao = new DaoFuncionario();
 
-            dao.cadastrarFuncionarios(funcionario);
+            String erro = funcionario.isValid();
+            if (erro != null) {
+                JOptionPane.showMessageDialog(null, erro);
+            } else {
 
-        String erro = funcionario.isValid();
-        if (erro != null) {
-            JOptionPane.showMessageDialog(null, erro);
+                dao.cadastrarFuncionarios(funcionario);
+
+                new Utilitarios().LimpaTela(painel_dados);
+            }
         } else {
-
-            dao.cadastrarFuncionarios(funcionario);
-
-            new Utilitarios().LimpaTela(painel_dados);
-        }
-         }else{
-             funcionario = new Funcionario();
+            funcionario = new Funcionario();
 
             funcionario.setNome(txtnome.getText());
             funcionario.setRg(txtrg.getText());
@@ -793,11 +791,17 @@ public class FrmFuncionario extends javax.swing.JFrame {
             funcionario.setId(Integer.parseInt(txtcodigo.getText()));
 
             DaoFuncionario dao = new DaoFuncionario();
+            
+            String erro = funcionario.isValid();
+            if (erro != null) {
+                JOptionPane.showMessageDialog(null, erro);
+            } else {
 
-            dao.alterarFuncionario(funcionario);
+                dao.alterarFuncionario(funcionario);
 
-            new Utilitarios().LimpaTela(painel_dados);
-         }
+                new Utilitarios().LimpaTela(painel_dados);
+            }
+        }
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
